@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #b91db9, #382274);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .signin-container {
+            background: linear-gradient(to bottom, #b91db9, #382274);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(to bottom, #b91db9, #382274);
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="signin-container">
+        <h2>Sign In</h2>
+        <form id="signinForm">
+            <div class="form-control">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <span class="error" id="emailError">Please enter a valid email.</span>
+            </div>
+            <div class="form-control">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <span class="error" id="passwordError">Password must be at least 6 characters.</span>
+            </div>
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+    <div class="links">
+        <a href="forgot-password.html" id="forgotPassword">Forgot Password?</a><br>
+        <a href="create-account.html" id="createAccount">Create an Account</a>
+    </div>
+
+    <script>
+        const signinForm = document.getElementById('signinForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+
+        signinForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent form submission for validation
+
+            // Email validation
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            let isValid = true;
+
+            if (!email.match(/^\S+@\S+\.\S+$/)) {
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            // Password validation
+            if (password.length < 6) {
+                passwordError.style.display = 'block';
+                isValid = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+
+            if (isValid) {
+                alert('Successfully Signed In!');
+                // Add form submission logic or redirect here
+            }
+        });
+
+// Optional: Add interactivity to "Forgot Password" and "Create Account" links
+document.getElementById('forgotPassword').addEventListener('click', () => {
+    alert('Redirecting to Forgot Password page...');
+    // You can replace this with your logic, e.g., window.location.href = 'forgot-password.html';
+});
+
+document.getElementById('createAccount').addEventListener('click', () => {
+    alert('Redirecting to Create Account page...');
+    // You can replace this with your logic, e.g., window.location.href = 'create-account.html';
+});
+
+    </script>
+</body>
+</html>
+
+ 

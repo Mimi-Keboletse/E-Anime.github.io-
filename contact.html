@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Contact Page</title>
+</head>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', sans-serif; /* Anime-inspired font */
+      background: radial-gradient(circle at top, #1f1b24, #0d0b0f); /* Dark, moody gradient */
+      color: #d8b4e2; /* Soft anime-inspired pastel */
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      font-size: 2.5em;
+      color: #ff6699;
+      text-shadow: 3px 3px 6px #000000;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    form {
+      background-color: rgba(40, 40, 40, 0.9);
+      border-radius: 15px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      color: #d8b4e2; /* Soft pastel text */
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background-color: #1f1b24;
+      color: #d8b4e2;
+      font-size: 1em;
+    }
+    button {
+      background-color: #ff6699;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+    button:hover {
+      transform: scale(1.1);
+      background-color: #c74d84;
+    }
+    .decor {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1em;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Contact Us 🐾
+  </header>
+  <div class="container">
+    <form action="thankyou.html" method="POST">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="Your anime name here..." required>
+      
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Your email..." required>
+      
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" placeholder="Tell us your story!" required></textarea>
+      
+      <button type="submit">Send Message</button>
+    </form>
+    <div class="decor">
+      <p>✨ Feel the magic,your fantasies are just a message away, leave us a note! ✨</p>
+    </div>
+  </div>
+</body>
+</html>

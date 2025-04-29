@@ -1,0 +1,105 @@
+Got it! You want stars that twinkle beautifully, just like in a serene night sky. Let's ditch the "toothpick" look and focus on creating a starry background with glowing, twinkling stars for a magical anime-like ambiance. Here's an upgraded version:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime-Style Starry Profilagate</title>
+    <style>
+        /* Full-screen anime-inspired background */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #0d0d2b, #1e1e2f);
+            overflow: hidden;
+            color: white;
+            text-align: center;
+        }
+
+        /* Twinkling stars effect */
+        .star {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: radial-gradient(circle, #ffffff, transparent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        /* Star animation */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .logo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #fdcb6e, 0 0 40px #ff7675, 0 0 60px #fdcb6e;
+            animation: floating 3s infinite alternate;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        .welcome-message {
+            margin: 20px 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            background: linear-gradient(to right,blue);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, purple);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="images/logo.jpg" alt="Your Logo" class="logo">
+        <div class="welcome-message">Welcome to E-Anime World]</div>
+        <a href="index.html" class="btn">Enter</a>
+    </div>
+
+    <!-- Twinkling stars -->
+    <script>
+        // Create twinkling stars
+        for (let i = 0; i < 100; i++) {
+            let star = document.createElement("div");
+            star.className = "star";
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            document.body.appendChild(star);
+        }
+    </script>
+</body>
+</html>

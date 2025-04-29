@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Anime</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:  'Comic Sans MS', sans-serif;
+        }
+
+        body {
+            background-color: #171717;
+            color: #ff6699;
+        }
+
+        /* Header Styles */
+        header {
+            position: relative;
+            padding: 20px 40px;
+            background:  radial-gradient(circle at top, #281e36, #0d0b0f);
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: linear-gradient(45deg, #ff77ff, #7744ff);
+            text-decoration: none;
+        }
+
+        .logo-container img {
+            height: 50px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 20px;
+            padding: 10px 40px;
+            background-color:  linear-gradient(45deg, #ff77ff, #7744ff);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            color:#ff6699;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color:  linear-gradient(45deg, #ff77ff, #7744ff);
+        }
+
+        /* Search Bar */
+        .search-container {
+            padding: 20px 40px;
+            background-color:  linear-gradient(45deg, #ff77ff, #7744ff);
+        }
+
+        .search-bar {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #7744ff;
+            color: #ff6699;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* Genre Buttons */
+        .genre-section {
+            padding: 20px 40px;
+            background-color: linear-gradient(45deg, #ff77ff, #7744ff);
+        }
+
+        .genre-title {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .genre-buttons {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .genre-buttons::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .genre-btn {
+            padding: 8px 16px;
+            background-color: #7744ff;
+            color:#ff6699;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background-color 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .genre-btn:hover {
+            background-color: linear-gradient(45deg, #ff77ff, #7744ff);
+        }
+
+        /* Anime List */
+        .anime-list {
+            padding: 20px 40px;
+            background-color:  linear-gradient(45deg, #ff77ff, #7744ff);
+            min-height: 200px;
+        }
+
+         /* Carousel with Spacing */
+         .carousel {
+            position: relative;
+            height: 400px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .carousel-images {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-images img {
+            width: calc(100% - 40px); /* Creates space between images */
+            height: 100%;
+            object-fit: cover;
+            margin: 0 20px; /* Adds space between images */
+            flex-shrink: 0;
+            border-radius: 8px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: #ff6699;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .carousel-btn.left {
+            left: 20px;
+        }
+
+        .carousel-btn.right {
+            right: 20px;
+        }
+
+        /* Anime Gallery - Netflix Style */
+        .anime-gallery {
+            padding: 20px 40px;
+        }
+
+        .anime-gallery h2 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .gallery-container {
+            position: relative;
+        }
+
+        .gallery-grid {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px 0;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .gallery-grid::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .anime-item {
+            flex: 0 0 auto;
+            width: 200px;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .anime-item:hover {
+            transform: scale(1.05);
+            z-index: 1;
+        }
+
+        .anime-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .anime-item h3 {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            font-weight: normal;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px 40px;
+            text-align: center;
+            background-color: linear-gradient(to bottom, #ff77ff, #7744ff);
+            margin-top: 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header, nav, .search-container, .genre-section, .anime-list, .anime-gallery {
+                padding: 15px 20px;
+            }
+
+            .anime-item {
+                width: 150px;
+            }
+
+            .anime-item img {
+                height: 225px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Logo -->
+    <header>
+        <div class="logo">E-Anime</div>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="images/logo.jpg" alt="Website Logo" class="logo">
+            </a>
+        </div>
+    </header>
+    
+    <!-- Hero Carousel -->
+    <div class="carousel">
+        <div class="carousel-images" id="carouselImages">
+            <img src="images/solo-leveling.jpg" alt="Solo Leveling">
+            <img src="images/My-Happy-marriage.jpg" alt="My Happy Marriage">
+            <img src="images/jujutsu-kaisen.jpg" alt="Jujutsu Kaisen">
+            <img src="images/Naruto.jpg" alt="Naruto">
+        </div>
+        <button class="carousel-btn left" id="prevBtn">&lt;</button>
+        <button class="carousel-btn right" id="nextBtn">&gt;</button>
+        <div class="dots" id="dotsContainer"></div>
+    </div>
+    
+    
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact</a>
+        <a href="FAQ.html">FAQ</a>
+        <a href="sign-in.html">Sign-in</a>
+    </nav>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for anime...">
+            <button id="searchBtn">Search</button>
+        </div>
+    </div>
+    
+    <!-- Search Results -->
+    <div class="search-results" id="searchResults">
+        <h2>Search Results</h2>
+        <div class="gallery-grid" id="resultsGrid"></div>
+    </div>
+    
+    <!-- Genre Section -->
+    <div class="genre-section">
+        <h2 class="genre-title">Browse by Genre</h2>
+        <div class="genre-buttons">
+            <button class="genre-btn" onclick="showAnime('Action')">Action</button>
+            <button class="genre-btn" onclick="showAnime('Romance')">Romance</button>
+            <button class="genre-btn" onclick="showAnime('Comedy')">Comedy</button>
+            <button class="genre-btn" onclick="showAnime('Fantasy')">Fantasy</button>
+            <button class="genre-btn" onclick="showAnime('Drama')">Drama</button>
+            <button class="genre-btn" onclick="showAnime('Thriller')">Thriller</button>
+        </div>
+    </div>
+    
+    <!-- Anime List -->
+    <div class="anime-list" id="animeList"></div>
+    
+    <!-- Anime Galleries -->
+    <section class="anime-gallery">
+        <h2>Popular on E-Anime</h2>
+        <div class="gallery-container">
+            <div class="gallery-grid">
+                <div class="anime-item">
+                    <img src="images/attack-on-titan.jpg" alt="Attack on Titan">
+                    <h3>Attack on Titan</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/A-Rank.jpg" alt="A-Rank">
+                    <h3>I Left My A-Rank Party</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/Fruits-Basket.jpg" alt="Fruits-Basket">
+                    <h3>Fruits Basket</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/you-lie-in-april.jpg" alt="you-lie-in-april">
+                    <h3>Your Lie in April</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/Spriggan.jpg" alt="Spriggan">
+                    <h3>Spriggan</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/the-apothecary-diaries.jpg" alt="the the-apothecary-diaries">
+                    <h3>The Apothecary Diaries</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/solo-leveling.jpg" alt="solo-leveling">
+                    <h3>Solo Leveling</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="anime-gallery">
+        <h2>New Releases</h2>
+        <div class="gallery-container">
+            <div class="gallery-grid">
+                <div class="anime-item">
+                    <img src="images/White-Snake.jpg" alt="White-Snake">
+                    <h3>White Snake</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/classroom-of-the-elite.jpg" alt="classroom-of-the-elite">
+                    <h3>Classroom of Elite</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/Spy-X-Family.jpg" alt="Spy-X-Family">
+                    <h3>Spy X Family</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/Sakamoto-Days.jpg" alt="Sakamoto-Days">
+                    <h3>Sakamoto Days</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/Naruto.jpg" alt="Naruto">
+                    <h3>Naruto</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/My-Happy-marriage.jpg" alt="My-Happy-marriage">
+                    <h3>My Happy Marriage</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/Komi-Cant-Commune.jpg" alt="Komi-Cant-Commune">
+                    <h3>Komi Can't Communicate</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="anime-gallery">
+        <h2>Trending Now</h2>
+        <div class="gallery-container">
+            <div class="gallery-grid">
+                <div class="anime-item">
+                    <img src="images/demon-slayer.jpg" alt="demon-slayer">
+                    <h3>Demon Slayer</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/dr-stone.jpg" alt="dr-stone">
+                    <h3>Dr. Stone</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/kaiju-no-8-anime.jpg" alt="kaiju-no-8">
+                    <h3>Kaiju No. 8</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/jujutsu-kaisen.jpg" alt="jujutsu-kaisen">
+                    <h3>Jujutsu Kaisen</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/death-note.jpg" alt="death-note">
+                    <h3>Death Note</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/dandadan.jpg" alt="dandadan">
+                    <h3>Dandadan</h3>
+                </div>
+                <div class="anime-item">
+                    <img src="images/Bleach.jpg" alt="Bleach">
+                    <h3>Bleach</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 E-Anime. All rights reserved.</p>
+        <p>We bring fantasies to life</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselImages = document.getElementById('carouselImages');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('dotsContainer');
+            const images = document.querySelectorAll('.carousel-images img');
+            const totalImages = images.length;
+            
+            let currentIndex = 0;
+            let autoSlideInterval;
+            
+            // Create dot indicators
+            function createDots() {
+                images.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    if (index === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => goToSlide(index));
+                    dotsContainer.appendChild(dot);
+                });
+            }
+            
+            // Update carousel position and active dot
+            function updateCarousel() {
+                carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Update active dot
+                document.querySelectorAll('.dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+            
+            // Go to specific slide
+            function goToSlide(index) {
+                currentIndex = index;
+                updateCarousel();
+                resetAutoSlide();
+            }
+            
+            // Next slide
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateCarousel();
+                resetAutoSlide();
+            }
+            
+            // Previous slide
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                updateCarousel();
+                resetAutoSlide();
+            }
+            
+            // Auto slide functionality
+            function startAutoSlide() {
+                autoSlideInterval = setInterval(nextSlide, 5000);
+            }
+            
+            function resetAutoSlide() {
+                clearInterval(autoSlideInterval);
+                startAutoSlide();
+            }
+            
+            // Initialize carousel
+            function initCarousel() {
+                createDots();
+                updateCarousel();
+                startAutoSlide();
+                
+                // Event listeners
+                nextBtn.addEventListener('click', nextSlide);
+                prevBtn.addEventListener('click', prevSlide);
+                
+                // Pause on hover
+                carouselImages.addEventListener('mouseenter', () => {
+                    clearInterval(autoSlideInterval);
+                });
+                
+                carouselImages.addEventListener('mouseleave', startAutoSlide);
+            }
+            
+            // Start the carousel
+            initCarousel();
+        });
+
+        
+        // Auto slide functionality
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+        
+          // Search functionality
+        document.getElementById('searchBtn').addEventListener('click', searchAnime);
+        document.getElementById('searchInput').addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                searchAnime();
+            }
+        });
+
+        function searchAnime() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const resultsGrid = document.getElementById('resultsGrid');
+            const searchResults = document.getElementById('searchResults');
+            
+            resultsGrid.innerHTML = '';
+            
+            if (searchTerm.trim() === '') {
+                searchResults.classList.remove('active');
+                return;
+            }
+            
+            let foundResults = false;
+            
+            for (const [title, data] of Object.entries(animeData)) {
+                if (title.toLowerCase().includes(searchTerm)) {
+                    resultsGrid.appendChild(createAnimeItem(title, data.image));
+                    foundResults = true;
+                }
+            }
+            
+            if (foundResults) {
+                searchResults.classList.add('active');
+            } else {
+                resultsGrid.innerHTML = '<p>No results found</p>';
+                searchResults.classList.add('active');
+            }
+        }
+        // Anime Data with proper image mappings
+const animeData = {
+    Action: [
+        { title: "Attack on Titan", image: "attack-on-titan.jpg" },
+        { title: "Kaiju 8", image: "kaiju-no-8-anime.jpg" },
+        { title: "Solo Leveling", image: "solo-leveling.jpg" },
+        { title: "Naruto", image: "Naruto.jpg" },
+        { title: "One Piece", image: "One-piece.jpg" }, 
+        { title: "Sokamoto Days", image: "Sakamoto-Days.jpg" }
+    ],
+    Romance: [
+        { title: "Your Lie in April", image: "you-lie-in-april.jpg" },
+        { title: "The Apothecary Diaries", image: "the-apothecary-diaries.jpg" },
+        { title: "Fruits Basket", image: "Fruits-Basket.jpg" },
+        { title: "Toradora", image: "toradora.jpg" },
+        { title: "White Snake", image: "White-Snake.jpg" }
+    ],
+    Comedy: [
+        { title: "One Punch Man", image: "/one-punch-man.jpg" }, 
+        { title: "Konosuba", image: "konosuba.jpg" }, 
+        { title: "Gintama", image: "Gintama.jpg" },
+        { title: "Spy X Family", image: "Spy-X-Family.jpg" },
+        { title: "Komi Can't Communicate", image: "Komi-Cant-Commune.jpg" }
+    ],
+    Fantasy: [
+        { title: "Naruto", image: "Naruto.jpg" },
+        { title: "White Snake", image: "White-Snake.jpg" },
+        { title: "Solo Leveling", image: "solo-leveling.jpg" },
+        { title: "Hells Paradise", image: "hells-paradise.jpg" },
+        { title: "Black Clover", image: "black-clover.jpg" }
+    ],
+    Drama: [
+        { title: "Shield Hero", image: "shield-hero.jpg" }, 
+        { title: "Black Clover", image: "black-clover.jpg" },
+        { title: "Your Lie in April", image: "you-lie-in-april.jpg" },
+        { title: "My Happy Marriage", image: "My-Happy-marriage.jpg" },
+        { title: "Classroom of Elite", image: "classroom-of-the-elite.jpg" }
+    ],
+    Thriller: [
+        { title: "Jujutsu Kaisen", image: "jujutsu-kaisen.jpg" },
+        { title: "Attack on Titan", image: "attack-on-titan.jpg" },
+        { title: "Demon Slayer", image: "demon-slayer.jpg" },
+        { title: "Death Note", image: "death-note.jpg" },
+        { title: "Spriggan", image: "Spriggan.jpg" },
+        { title: "Dandadan", image: "dandadan.jpg" }
+    ]
+};
+
+// Default image for missing files
+const defaultImage = "default.jpg";
+
+function showAnime(genre) {
+    const animeListDiv = document.getElementById('animeList');
+    animeListDiv.innerHTML = `<h2>${genre} Anime</h2>`;
+    
+    const gallery = document.createElement('div');
+    gallery.className = 'gallery-grid';
+    
+    animeData[genre].forEach(anime => {
+        const animeItem = document.createElement('div');
+        animeItem.className = 'anime-item';
+        animeItem.innerHTML = `
+            <img src="images/${anime.image}" alt="${anime.title}" 
+                 onerror="this.src='images/${defaultImage}'">
+            <h3>${anime.title}</h3>
+        `;
+        gallery.appendChild(animeItem);
+    });
+    
+    animeListDiv.appendChild(gallery);
+}
+    </script>
+</body>
+</html>

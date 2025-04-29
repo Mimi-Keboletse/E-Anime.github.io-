@@ -1,0 +1,337 @@
+/* Global Reset & Base Styles */
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #ffffff;
+    padding: 8px 12em;
+    border-radius: 5px 20px;
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    display: flexbox; /* Enables flexbox for alignment */
+    align-items: center; /* Centers vertically */
+    height: 100vh;
+  }
+    
+  /* Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+  }
+  
+  .logo-and-search {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 80px; /* Adjust as you like */
+    margin-right: 20px;
+  }
+  
+ 
+  .search-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+  
+  .search-button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    background: linear-gradient(45deg, #ff77ff, #7744ff);
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .search-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Sign In Button */
+  .sign-in-button {
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #ff77ff, #7744ff);
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .sign-in-button:hover {
+    opacity: 0.8;
+  }
+  
+  /* Main Content Layout */
+  .content-container {
+    display: flex;
+    margin: 20px;
+    min-height: 70vh; /* So the footer sits nicely at the bottom */
+  }
+  
+  /* Left Panel: Branding & Navigation */
+  .left-panel {
+    flex: 1;
+    margin-right: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  .left-panel h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .motto {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #ccc; /* Lighter text for the motto */
+  }
+  
+  /* Dropdown Navigation */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  
+  .dropdown-btn {
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #ff77ff, #7744ff);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .dropdown-btn:hover {
+    opacity: 0.8;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #222;
+    min-width: 160px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #444;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Right Panel: Login Form */
+  .right-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .container {
+    text-align: center;
+    background: linear-gradient(45deg, #ff77ff, #7744ff);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #444;
+    background: #222;
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  .loginButton {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(45deg, #ff77ff, #7744ff);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .button:hover {
+    opacity: 0.8;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+  }
+  
+/* Main Content */
+.main-content {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.genre-section {
+    margin-bottom: 2rem;
+}
+
+.genre-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #7c2ee2;
+}
+.genre-btn {
+  margin: 5px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.genre-btn:hover {
+  background-color: #0056b3;
+}
+
+.anime-list {
+  margin-top: 20px;
+}
+
+.anime-list h3 {
+  color: #333;
+}
+
+
+
+.genre-card:hover {
+    transform: translateY(-5px);
+}
+p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .genre-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+.anime-gallery {
+  padding: 20px;
+  text-align: center;
+  background-color: linear-gradient(45deg, #ff77ff, #7744ff)
+}
+
+.galler-row{
+  display: flex;
+  justify-content: first baseline;
+  gap: 20px;
+}
+.gallery-grid {
+  display: grid; /* Enables grid layout */
+  grid-template-columns: repeat(3, 1fr); /* Defines 4 columns */
+  gap: 20px; /* Spacing between items */
+}
+
+.anime-item img {
+  width: 100%;
+  border-radius: 10px;
+  display: inline-table;
+  width: 150px; /* Set a fixed width */
+  height: 200px; /* Set a fixed height */
+  object-fit: cover; /* Ensures images retain proportions within the defined size */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.anime-item h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+  color:white;
+}
+.carousel {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px; /* Adjust to your preferred width */
+  margin: 0 auto;
+  overflow: hidden;
+}
+

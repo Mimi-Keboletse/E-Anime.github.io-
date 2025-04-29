@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            /* Background image settings */
+            background-image: url('your-background-image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Optional: Fixed scrolling effect */
+            color: white; /* Text color for readability */
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark overlay */
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .question {
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .answer {
+            display: none;
+            padding-top: 10px;
+        }
+
+        .answer.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="faq-container">
+            <h1>Frequently Asked Questions</h1>
+            
+            <div class="faq-item">
+                <div class="question">Q: How do I reset my password?</div>
+                <div class="answer">A: Go to the login page and click "Forgot Password".</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="question">Q: What are your business hours?</div>
+                <div class="answer">A: We're operative 24/7.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="question">Q:What is anime?</div>
+                <div class="answer">Anime is a style of animation originating from Japan, known for its vibrant art and diverse storytelling.Anime is much more than just short animated content—it represents a deep and immersive art form that originated in Japan. Through the efforts of Japanese newspapers and television promotions, anime has gained international recognition and appreciation, captivating audiences from every corner of the world.Anime has become a global phenomenon, captivating audiences across continents. It's estimated that around 36% of viewers worldwide, or approximately 2.88 billion people, enjoyed watching anime in 2021.Unlike other wesite we however do not offer extensive library of anime catering to all demographics, ensuring that no matter your age, interests, or mood, there's always something perfect for you to explore. The diversity of genres would make it a true haven for anime enthusiasts everywhere.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="question">Q:Where can i watch anime legally?</div>
+                <div class="answer">You can watch anime on platforms like Crunchyroll, Funimation, Netflix, and Hulu. We are only here to showcase to you what you can watch but we do not offer the services for you to watch.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="question">Q:what is E-Anime about?</div>
+                <div class="answer">E-Anime is a hub for anime enthusiasts that brings together the full spectrum of anime entertainment under one roof. Offering everything from captivating movies to binge-worthy series, E-Anime is designed to cater to fans of every genre, style, and era. Whether you're seeking thrilling action-packed adventures, heartwarming tales of romance, or mind-bending fantasy, our website is your gateway to the anime world. With a vast collection of titles, E-Anime ensures that you always have something exciting to explore, whether it's classic favorites or the latest releases. True to our slogan, "We bring fantasies to life," E-Anime creates a space where imagination knows no bounds and anime dreams come true. Dive in, and let E-Anime be your companion in experiencing the magic of storytelling that defines the anime universe. Here, whatever you seek, we have it—your anime journey begins now!</div>
+            </div>
+            
+            <!-- Add more FAQ items as needed -->
+        </div>
+    </div>
+
+    <script>
+        // Simple JavaScript to toggle answers
+        document.querySelectorAll('.question').forEach(item => {
+            item.addEventListener('click', event => {
+                const answer = event.target.nextElementSibling;
+                answer.classList.toggle('show');
+            });
+        });
+    </script>
+</body>
+</html>
