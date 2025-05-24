@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Genres | AnimeHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #141414;
+            color: #f5f5f5;
+            background-image: url('images/Bleach.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        
+        header {
+            background-color: #16213e;
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .search-container {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+        
+        #search-bar {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            background-color: #0f3460;
+            color: white;
+            font-size: 16px;
+        }
+        
+        #search-bar::placeholder {
+            color: #b8b8b8;
+        }
+        
+        .genre-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 15px;
+        }
+        
+        .genre-card {
+            background-color: #0f3460;
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .genre-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .anime-results {
+            display: none;
+            padding: 20px;
+        }
+        
+        .anime-card {
+            background-color: #16213e;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .anime-card img {
+            width: 80px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .anime-info h3 {
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .anime-info p {
+            color: #b8b8b8;
+            font-size: 0.8rem;
+            margin: 0;
+        }
+        .site-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #9b749b;
+            text-decoration: none;
+        }
+
+        .logo-container img {
+            height: 60px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 30px;
+            padding: 15px 20px;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+        }
+
+        nav a {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #9e6f94;
+        }
+        
+        @media (max-width: 600px) {
+            .genre-card {
+                width: 120px;
+                height: 120px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Anime Genres</h1>
+        <a href="index.html" class="site-name">E-Anime</a>
+            <div class="logo-container">
+                <img src="images/logo.jpg" alt="E-Anime Logo" class="logo">
+            </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="index.html">Gate</a>
+        <a href="contact.html">Contact</a>
+        <a href="category.html">Categories</a>
+        <a href="home.html">Home</a>
+        
+    </nav>
+    
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Search anime..." autocomplete="off">
+    </div>
+    
+    <div class="genre-container">
+        <div class="genre-card" data-genre="comedy">Comedy</div>
+        <div class="genre-card" data-genre="thriller">Thriller</div>
+        <div class="genre-card" data-genre="action">Action</div>
+        <div class="genre-card" data-genre="romance">Romance</div>
+        <div class="genre-card" data-genre="fantasy">Fantasy</div>
+        <div class="genre-card" data-genre="drama">Drama</div>
+    </div>
+    
+    <div class="anime-results" id="anime-results"></div>
+    
+    <script>
+        // Sample anime data
+        const animeData = [
+            { title: "Spy x Family", genre: ["comedy", "action"], description: "A spy forms a fake family for his mission.", image: "images/Spy-X-Family.jpg"},
+            { title: "Attack on Titan", genre: ["action", "drama", "thriller"], description: "Humanity fights giant humanoid creatures.", image: "images/attack-on-titan.jpg" },
+            { title: "My Happy Marriage", genre: ["drama", "romance"], description: "A piano prodigy meets a free-spirited violinist.", image: "images/My-Happy-marriage.jpg" },
+            { title: "Jujutsu Kaisen", genre: ["action", "thriller", "fantasy"], description: "A boy enters the world of curses and sorcery.", image: "images/jujutsu-kaisen.jpg" },
+            { title: "Death Note", genre: ["thriller", "drama"], description: "A student gains a notebook that can kill anyone.", image: "images/death-note.jpg" },
+            { title: "Classroom of elite", genre: ["drama", "thriller"], description: "Students compete in mind games to rise in an elite school.", image: "images/classroom-of-the-elite.jpg"},
+            { title: "Black Clover", genre: ["fantasy", "drama"], description: "Asta, a boy without magic, fights to become the Wizard King using anti-magic powers.",image: "images/black-clover.jpg"},
+            { title: "Naruto", genre: ["action", "fantasy"], description: "A boy seeks to become Hokage while overcoming challenges and building friendships.", image: "images/Naruto.jpg"},
+            { title: "I Left My A-Rank Party to Help My Former Students Reach the Dungeon Depths", genre: ["fantasy"], description: "I Left My A-Rank Party to Help My Former Students Reach the Dungeon Depths", image: "images/A-Rank.jpg"},
+            { title: "Bleach", genre: ["action"], description: "A high schooler gains Soul Reaper powers to protect humans from evil spirits.", image: "images/Bleach.jpg"},
+            { title: "Blue Lock", genre:["thriller"], description: "A striker competes in a ruthless soccer program to become the best in Japan.", image: "images/blue-lock-tv-series-poster.jpg"},
+            { title: "Demon Slayer", genre: ["fantasy", "thriller"], description: "A boy joins the Demon Slayer Corps to avenge his family and fight demons.", image: "images/demon-slayer.jpg"},
+            { title: "Spriggan", genre: ["action", "thriller"], description: "A secret agent fights to protect ancient relics from falling into the wrong hands.", image: "images/Spriggan.jpg"},
+            { title: "One Punch Man", genre: ["comedy", "action"], description: "A bored superhero defeats every enemy with a single punch while searching for a real challenge..", image: "images/one-punch-man.jpg"},
+            { title: "Dr Stone", genre: ["comedy", "drama"], description: "A genius scientist rebuilds civilization after humanity is mysteriously petrified.", image: "images/dr-stone.jpg"},
+            { title: "Fruit Basket", genre: ["romance", "comedy"], description: "A kindhearted orphan helps a cursed family heal from their emotional wounds.", image: "images/Fruits-Basket.jpg"},
+            { title: "Komi Can't Communicate", genre: ["romance", "comedy"], description: "A socially anxious girl embarks on a journey to make 100 friends with the help of her classmate.", image: "images/Komi-Cant-Commune.jpg"},
+            { title: "Spy x Family", genre: ["action", "thriller"], description: "A spy, an assassin, and a telepath form a fake family while hiding their secrets.", image: "images/Spy-X-Family.jpg"},
+            { title: "Gintama", genre: ["comedy", "action"], description: "A samurai and his odd-job crew navigate alien-invaded Edo with humor and action.", image: "images/Gintama.jpg"},
+            { title: "Hell's Paradise", genre: ["action", "fantasy"], description: "A ninja fights for survival on a deadly island while seeking the Elixir of Life.", image: "images/hells-paradise.jpg"},
+            { title: "Kaiju 8", genre: ["action", "fantasy"], description: "A man gains kaiju powers and fights to protect Japan from monstrous threats.", image: "images/kaiju-no-8-anime.jpg"},
+            { title: "solo-levelling", genre: ["fantasy", "drama"], description: "A boy is transported to another world with a special ability.", image: "images/solo-leveling.jpg"},
+            { title: "Your Lie in April", genre: ["comedy", "romance"], description: "A piano prodigy rediscovers music and love after meeting a free-spirited violinist.", image: "images/you-lie-in-april.jpg"},
+            { title: "Hell's Paradise", genre: ["fantasy"], description: "A falsely accused hero rises from betrayal to protect a world that despises him.", image: "images/shield-hero.jpg"},
+            { title: "Sakamoto Days", genre: ["comedy", "action"], description: "A retired hitman fights off assassins while trying to live a peaceful life with his family.", image: "images/Sakamoto-Days.jpg"},
+            { title: "White Snake ", genre: ["fantasy", "romance"], description: "A white snake demon falls in love with a human while uncovering her lost memories.", image: "images/White-Snake.jpg"},
+        ];
+        
+        // Genre selection
+        const genreCards = document.querySelectorAll('.genre-card');
+        const searchBar = document.getElementById('search-bar');
+        const resultsContainer = document.getElementById('anime-results');
+        
+        genreCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const genre = card.getAttribute('data-genre');
+                filterAnimeByGenre(genre);
+            });
+        });
+        
+        // Search functionality
+        searchBar.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            if (searchTerm.length > 2) {
+                searchAnime(searchTerm);
+            } else {
+                resultsContainer.innerHTML = '';
+                resultsContainer.style.display = 'none';
+            }
+        });
+        
+        function filterAnimeByGenre(genre) {
+            const filteredAnime = animeData.filter(anime => anime.genre.includes(genre));
+            displayResults(filteredAnime, `Anime in ${genre.charAt(0).toUpperCase() + genre.slice(1)}`);
+        }
+        
+        function searchAnime(term) {
+            const results = animeData.filter(anime => 
+                anime.title.toLowerCase().includes(term) || 
+                anime.description.toLowerCase().includes(term)
+            );
+            displayResults(results, `Search results for "${term}"`);
+        }
+        
+        function displayResults(animeList, heading) {
+            resultsContainer.innerHTML = '';
+            
+            if (animeList.length === 0) {
+                resultsContainer.innerHTML = `<p>No results found</p>`;
+                resultsContainer.style.display = 'block';
+                return;
+            }
+            
+            const headingElement = document.createElement('h2');
+            headingElement.textContent = heading;
+            headingElement.style.marginBottom = '20px';
+            resultsContainer.appendChild(headingElement);
+            
+            animeList.forEach(anime => {
+                const animeCard = document.createElement('div');
+                animeCard.className = 'anime-card';
+                animeCard.innerHTML = `
+                    <img src="${anime.image}" alt="${anime.title}">
+                    <div class="anime-info">
+                        <h3>${anime.title}</h3>
+                        <p>${anime.description}</p>
+                        <p><small>Genres: ${anime.genre.join(', ')}</small></p>
+                    </div>
+                `;
+                resultsContainer.appendChild(animeCard);
+            });
+            
+            resultsContainer.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

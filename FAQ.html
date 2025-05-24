@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - AnimeHub</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #141414;
+            color: #f5f5f5;
+            background-image: url('images/Bleach.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            position: relative;
+            padding: 25px 50px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #9b749b;
+            text-decoration: none;
+        }
+
+        .logo-container img {
+            height: 60px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 30px;
+            padding: 20px 50px;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+        }
+
+        nav a {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #9e6f94;
+        }
+
+        /* FAQ Content */
+        .faq-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 50px;
+        }
+
+        .faq-title {
+            font-size: 2.5rem;
+            color: #f3f1f2;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .faq-item {
+            background-color: rgba(20, 20, 20, 0.8);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: rgba(40, 40, 40, 0.8);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 50px;
+            text-align: center;
+            background-color: rgba(0,0,0,0.9);
+            margin-top: 50px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-link {
+            color: #b8b8b8;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #b47b9b;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            color: #b8b8b8;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header, nav, .faq-container, footer {
+                padding: 15px 20px;
+            }
+
+            .site-name {
+                font-size: 1.5rem;
+            }
+
+            .logo-container img {
+                height: 50px;
+            }
+
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .faq-title {
+                font-size: 2rem;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <!-- Header with Site Name and Logo -->
+        <header>
+            <a href="index.html" class="site-name">E-Anime</a>
+            <div class="logo-container">
+                <img src="images/logo.jpg" alt="E-Anime Logo" class="logo">
+            </div>
+        </header>
+        
+        <!-- Navigation Bar -->
+        <nav>
+            <a href="index.html">Gate</a>
+            <a href="contact.html">Contact</a>
+            <a href="category.html">Categories</a>
+            <a href="home.html">Home</a>
+            
+        </nav>
+        
+        <!-- FAQ Content -->
+        <div class="faq-container">
+            <h1 class="faq-title">Frequently Asked Questions</h1>
+            
+            <div class="faq-item">
+                <div class="faq-question">Is E-Anime free to use?</div>
+                <div class="faq-answer">
+                    <p>Yes! Eanime offers free access to our entire anime library with ads.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I download anime to watch offline?</div>
+                <div class="faq-answer">
+                    <p>Yes, premium subscribers can download anime for offline viewing on our mobile apps. Downloads are available for a limited time and can be watched without an internet connection.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: What are your business hours?</div>
+                <div class="faq-answer">A: We're operative 24/7.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q:What is anime?</div>
+                <div class="faq-answer">Anime is a style of animation originating from Japan, known for its vibrant art and diverse storytelling.Anime is much more than just short animated content—it represents a deep and immersive art form that originated in Japan. Through the efforts of Japanese newspapers and television promotions, anime has gained international recognition and appreciation, captivating audiences from every corner of the world.Anime has become a global phenomenon, captivating audiences across continents. It's estimated that around 36% of viewers worldwide, or approximately 2.88 billion people, enjoyed watching anime in 2021.Unlike other wesite we however do not offer extensive library of anime catering to all demographics, ensuring that no matter your age, interests, or mood, there's always something perfect for you to explore. The diversity of genres would make it a true haven for anime enthusiasts everywhere.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q:Where can i watch anime legally?</div>
+                <div class="faq-answer">You can watch anime on platforms like Crunchyroll, Funimation, Netflix, and Hulu. We are only here to showcase to you what you can watch but we do not offer the services for you to watch.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Q:what is E-Anime about?</div>
+                <div class="faq-answer">E-Anime is a hub for anime enthusiasts that brings together the full spectrum of anime entertainment under one roof. Offering everything from captivating movies to binge-worthy series, E-Anime is designed to cater to fans of every genre, style, and era. Whether you're seeking thrilling action-packed adventures, heartwarming tales of romance, or mind-bending fantasy, our website is your gateway to the anime world. With a vast collection of titles, E-Anime ensures that you always have something exciting to explore, whether it's classic favorites or the latest releases. True to our slogan, "We bring fantasies to life," E-Anime creates a space where imagination knows no bounds and anime dreams come true. Dive in, and let E-Anime be your companion in experiencing the magic of storytelling that defines the anime universe. Here, whatever you seek, we have it—your anime journey begins now!</div>
+            </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer>
+            <div class="footer-links">
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="about.html" class="footer-link">About</a>
+                <a href="faq.html" class="footer-link">FAQ</a>
+                <a href="contact.html" class="footer-link">Contact</a>
+            </div>
+            <p class="copyright">© 2025 AnimeHub. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // FAQ Accordion Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Open first FAQ item by default
+            if (faqItems.length > 0) {
+                faqItems[0].classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
